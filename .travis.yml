@@ -6,7 +6,7 @@ python:
   - "3.6"
 
 install:
-  - pip install numpy numexpr scipy tbb dask numba cython
+  - pip install numpy numexpr scipy dask numba cython
 
 script:
   - python bs_erf_numpy.py
