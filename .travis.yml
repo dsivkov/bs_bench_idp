@@ -6,8 +6,8 @@ python:
   - "3.6"
 
 install:
-  - pip install numpy numexpr scipy dask numba cython
-  - sudo apt-get update
+#  - pip install numpy numexpr scipy dask numba cython
+#  - sudo apt-get update
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
