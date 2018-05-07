@@ -22,7 +22,7 @@ install:
 
 
 script:
-  - python bs_erf_numpy.py
+  - python bs_erf_numpy.py --steps 2
   - conda activate intel3
-  - python bs_erf_numpy.py
+  - python bs_erf_numpy.py --steps 2
 
