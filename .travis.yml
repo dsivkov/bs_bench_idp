@@ -18,6 +18,7 @@ install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
+  - conda install numpy numexpr scipy dask numba cython
   - conda create -y -n intel3 -c intel python=3 numpy numexpr scipy tbb dask numba cython
 
 
