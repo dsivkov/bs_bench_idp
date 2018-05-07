@@ -4,3 +4,9 @@ language: python
 # Далее, укажите версии python для которых нужно производить сборки
 python:
   - "3.6"
+
+install:
+  - pip install numpy numexpr scipy tbb dask numba cython
+
+script:
+  - python bs_erf_numpy.py
