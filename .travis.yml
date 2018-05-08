@@ -20,12 +20,16 @@ install:
   - conda info -a
   - conda install numpy numexpr scipy dask numba cython
   - conda create -y -n intel3 -c intel python=3 numpy numexpr scipy tbb dask numba cython
-
+  # Install Intel APS
+  - wget https://software.intel.com/sites/products/snapshots/application-snapshot/download-kits/APS_2018_update2_lin.tar.gz -O APS.tar.gz
+  - mkdir APS
+  - tar -xf tar -xf ./APS.tar.gz -C ./APS --strip-components=1
+  - source ./APS/apsvars.sh 
 
 script:
   - python bs_erf_numpy.py --steps 4
   - python bs_erf_numba_vec_par.py --steps 4
   - source activate intel3
   - python bs_erf_numpy.py --steps 4
-  - python bs_erf_numba_vec_par.py --steps 4
+  - aps python bs_erf_numba_vec_par.py --steps 4
 
