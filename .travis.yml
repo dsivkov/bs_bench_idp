@@ -21,16 +21,23 @@ install:
   - conda install numpy numexpr scipy dask numba cython
   - conda create -y -n intel3 -c intel python=3 numpy numexpr scipy tbb dask numba cython
   # Install Intel APS
-  - wget -O APS.tar.gz https://software.intel.com/sites/products/snapshots/application-snapshot/download-kits/APS_2018_update3_lin.tar.gz
-  - mkdir APS
-  - tar -xf ./APS.tar.gz -C ./APS --strip-components=1
-  - source ./APS/apsvars.sh 
-  - sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
+  #- wget -O APS.tar.gz https://software.intel.com/sites/products/snapshots/application-snapshot/download-kits/APS_2018_update3_lin.tar.gz
+  #- mkdir APS
+  #- tar -xf ./APS.tar.gz -C ./APS --strip-components=1
+  #- source ./APS/apsvars.sh 
+  #- sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
+  # Install Intel(R) Vtune(TM)
+  - wget http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/13079/vtune_amplifier_2018_update3.tar.gz
+  - tar -xzf ./vtune_amplifier_2018_update3.tar.gz
+  - wget http://boostcode.ru/Labs/vtune2018u3.cfg
+  - sudo ./vtune_amplifier_2018_update3/install.sh -s ./vtune2018u3.cfg
+  - source /opt/intel/vtune_amplifier/amplxe-vars.sh
 
 script:
   - python bs_erf_numpy.py --steps 4
   - python bs_erf_numba_vec_par.py --steps 4
   - source activate intel3
   - python bs_erf_numpy.py --steps 4
-  - aps python bs_erf_numba_vec_par.py --steps 4
+  - amplxe-cl -collect hotspots -mrte-mode mixed -result-dir result -- python bs_erf_numba_vec_par.py --steps 4
+
 
