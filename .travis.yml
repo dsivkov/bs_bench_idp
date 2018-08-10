@@ -30,7 +30,7 @@ install:
   - wget http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/13079/vtune_amplifier_2018_update3.tar.gz
   - tar -xzf ./vtune_amplifier_2018_update3.tar.gz
   - wget http://boostcode.ru/Labs/vtune2018u3.cfg
-  #- cat ./vtune2018u3.cfg
+  - cat ./vtune2018u3.cfg
   - sudo ./vtune_amplifier_2018_update3/install.sh -s ./vtune2018u3.cfg
   - source /opt/intel/vtune_amplifier/amplxe-vars.sh
 
